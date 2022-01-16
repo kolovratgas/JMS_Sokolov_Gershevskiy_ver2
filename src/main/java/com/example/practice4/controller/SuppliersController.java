@@ -66,6 +66,7 @@ public class SuppliersController {
             MediaType.APPLICATION_JSON_VALUE
     })
     public ResultDTO createSupplier(Supplier supplier) {
+
         return ResultDTO.of(
                 Collections.singletonList(supplierService.save(supplier))
         );

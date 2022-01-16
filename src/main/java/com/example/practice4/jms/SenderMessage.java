@@ -32,6 +32,7 @@ public class SenderMessage {
         return factory;
     }
 
+
     public static void send(String massage) {
         JmsTemplate jmsTemplate = Practice4Application.context.getBean(JmsTemplate.class);
         System.out.println("Sending a JMS message.");
@@ -69,5 +70,6 @@ public class SenderMessage {
         transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
         transport.close();
     }
+
 
 }

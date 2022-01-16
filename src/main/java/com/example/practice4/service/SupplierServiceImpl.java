@@ -1,10 +1,13 @@
 package com.example.practice4.service;
 
+import com.example.practice4.Practice4Application;
 import com.example.practice4.dto.SupplierDTO;
+import com.example.practice4.jms.SenderMessage;
 import com.example.practice4.model.Supplier;
 import com.example.practice4.repository.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +39,12 @@ public class SupplierServiceImpl implements SupplierService {
     public void delete(Long id) {
         supplierRepository.deleteById(id);
     }
+
+    @Override
+    public void send(SenderMessage senderMessage, String massage) {
+        JmsTemplate jmsTemplate = Practice4Application.context.getBean(JmsTemplate.class);
+        System.out.println("Sending a JMS message.");
+        jmsTemplate.convertAndSend("sampleQueue",  massage);}
 
     @Override
     public void edit(Supplier newSupplier) {
