@@ -32,15 +32,6 @@ public class SenderMessage {
         return factory;
     }
 
-
-    public static void send(String massage) {
-        JmsTemplate jmsTemplate = Practice4Application.context.getBean(JmsTemplate.class);
-        System.out.println("Sending a JMS message.");
-        jmsTemplate.convertAndSend("sampleQueue",  massage);
-    }
-
-
-
     public static void generateAndSendEmail(String massage, String email) throws AddressException, MessagingException {
         // Step1
         System.out.println("\n 1st ===> setup Mail Server Properties..");
